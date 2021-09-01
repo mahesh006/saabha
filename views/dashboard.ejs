@@ -1,0 +1,118 @@
+
+<!--doctype html-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, intial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="/css/style_main.css"/>
+    <link rel="shortcut icon" href="images/fav-icon.png"/>
+    <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section id="room">
+        
+            <!--post-filter---------->
+            <nav>
+                <!--menu-icon------------->
+                <input type="checkbox" class="menu-btn" id="menu-btn">
+                <label for="menu-btn" class="menu-icon">
+                    <span class="nav-icon"></span>
+                </label>
+                <!--filter--------->
+                <ul class="room-filter">
+                    <li class="list room-filter-active" data-filter="all">All</li>
+                    <li class="list"><a href="/public/rooms">Public Rooms</a></li>
+                    <li class="createroom"><a  href="/rooms/add">Create Room</a></li>
+                    <li class="logout"><a href="/logout">logout</a></li>
+                </ul>
+            </nav>         
+           
+        <!--container------------------------------->
+        <div class="room-container">          
+            <!--box-1----------------------------------------------->
+            <% for (var i = 0; i < rooms.length; i++) { %>
+            <div class="room-box app">                
+                <!--text---->
+                <div class="room-text">
+                    <!--title------------------------>
+                    <a href="<%= rooms[i]._id %>">
+                        <strong><%= rooms[i].title %> </strong>
+                    </a>
+
+                    
+                    <!--time-and-category------------->
+                    <div class="category-time">
+                        <span class="room-category"><%= rooms[i].status %></span>
+                        <span class="published-time"><%= rooms[i].createdAt %></span>
+                    </div>
+                    <!--publisher-profile------------->
+                    <div class="publisher-profile">
+                        
+                        <% if (rooms[i].pin === "happy"){ %>
+                            <span><i class="fas fa-smile fa-2x"></i></span>
+                        <% } %>
+                        <% if (rooms[i].pin === "neutral"){ %>
+                            <span><i class="fas fa-meh fa-2x"></i></span>
+                        <% } %>
+                        <% if (rooms[i].pin === "sad"){ %>
+                            <span><i class="fas fa-frown fa-2x"></i></span>
+                        <% } %>
+                        <input type="hidden" value="{{roomId}}" id="room-id" name="room">
+                        <input type="hidden" value="{{user.displayName}}" id="username" name="username">
+                    </div>
+                </div>
+            
+            </div>
+            <% } %>
+
+        
+        </div>  
+    </section>
+    <!--footer------------------------------------->
+   
+    <!--JQuery----------------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <!--script----------------------->
+    <script type="text/javascript">
+    
+        /*blog-filter-menu----------------------------*/
+        $(document).on('click','.room-filter li',function(){
+            $(this).addClass('room-filter-active').siblings().removeClass('room-filter-active')
+        });
+        /*post-filter---------------------------------*/
+        $(document).ready(function(){
+            $('.list').click(function(){
+                const value = $(this).attr('data-filter');
+                if(value == 'all'){
+                    $('.room-box').show('1000');
+                }
+                else{
+                    $('.room-box').not('.'+value).hide('1000');
+                    $('.room-box').filter('.'+value).show('1000');
+                }
+            });
+        });
+    
+        /*for-fix-filter-menu-----------------------------*/
+        $(window).scroll(function(){
+            if($(document).scrollTop() > 80){
+                $('nav').addClass('fix-nav');
+            }
+            else{
+                $('nav').removeClass('fix-nav');
+            }
+        });
+    </script>
+    
+   
+    
+</body>
+</html>
+
+
+

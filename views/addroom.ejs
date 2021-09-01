@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Room</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/css/add.css">
+</head>
+<body> 
+     <div class="wrapper">
+         <div class="headline">
+             <h1>Create Room</h1>
+         </div>
+         <form class="form" method="post" action="/sabhaa/addroom">
+            <div class="signup">
+                <div class="form-group">
+                    <input type="text" placeholder="Room Name" required="" id="title" name="title">
+                </div>
+                <div class="form-group">
+                    <select id="status" name="status" >
+                        <option value="public" selected>Public</option>
+                        <option value="private">Private</option>
+                    </select>
+                    <label for="status">Status</label>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" placeholder="text" required="" id="body" name="pin" value="none"> 
+                </div>
+
+                <button type="submit" class="btn">Create Room</button>
+                <div class="account-exist">
+                    Already Created an Room? <a href="/public/rooms" id="login">Rooms</a>
+                </div>
+            </div>
+         </form>
+     </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
+

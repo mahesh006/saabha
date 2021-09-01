@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Join Room</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/css/add.css">
+</head>
+<body> 
+     <div class="wrapper">
+         <div class="headline">
+             <h1>Join Room</h1>
+         </div>
+         <form class="form" method="post" action="/sabhaa/main">
+            <div class="signup">
+                
+                
+                <div class="form-group">
+                    <input type="hidden" value="<%= rooms._id %>" name="roomName">
+                    <span>Room id: <a><%= rooms._id %></a></span> 
+                </div>
+
+                <button type="submit" class="btn" id="createRoomButton">Join Room</button>
+                <div class="account-exist">
+                    Already Created an Room? <a href="/public/rooms" id="login">Join Room</a>
+                </div>
+            </div>
+         </form>
+     </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
+
