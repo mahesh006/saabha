@@ -28,9 +28,9 @@ server.listen(port, function(){
 });
 
 // Logging
-if (process.env.NODE_ENV === 'development') {
-    app.use(morgan('dev'))
-}
+
+app.use(morgan('dev'))
+
 
 // Sessions
 app.use(
